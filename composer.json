@@ -1,20 +1,19 @@
 {
     "name": "billowapp/clickatell-sms",
     "description": "laravel package for clickatell",
-    "type": "package",
-    "license": "mit",
+    "license": "MIT",
     "authors": [
-        {
-            "name": "jasonru",
-            "email": "jason@billow.co.za"
-        }
+      {
+        "name": "jasonru",
+        "email": "jason@billow.co.za"
+      }
     ],
     "require": {
-        "guzzlehttp/guzzle": "^6.3"
+      "guzzlehttp/guzzle": "^6.3"
     },
     "autoload": {
-        "psr-4": {
-            "Billow\\": "billow/"
-        }
+      "psr-4": {
+        "Billow\\Utilities\\": "src/"
+      }
     }
 }
