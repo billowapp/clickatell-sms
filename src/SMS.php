@@ -1,37 +1,71 @@
 <?php
+
 namespace Billow\Utilities;
 
 use GuzzleHttp\Client;
 
 class SMS
 {
-  protected $recipients = [];
-  protected $content;
-  protected $apiUrl = 'https://platform.clickatell.com/messages/http/send?apiKey=';
+    /**
+     * Clickatell Platform base endpoint
+     * @var string
+     */
+    protected $apiUrl = 'https://platform.clickatell.com/messages/http/send?apiKey=';
 
-  public function content($content)
-  {
-      $this->content = urlencode($content);
-      return $this;
-  }
+    /**
+     * SMS content
+     * @var mixed
+     */
+    protected $content;
 
-  public function recipient($mobile)
-  {
-      $this->recipients = collect();
-      $this->recipients->push(urlencode($mobile));
-      return $this;
-  }
+    /**
+     * Recipients
+     * @var array
+     */
+    protected $recipients = [];
 
-  public function send()
-  {
-      (new Client)->request(
-        'GET',
-        $this->apiUrl . env('CLICKATELL_API_KEY') . '&to='. $this->to() . '&content=' . $this->content
-      );
-  }
+    /**
+     * Set the content for this SMS
+     * @param  $content
+     * @return mixed
+     */
+    public function content($content)
+    {
+        $this->content = urlencode($content);
 
-  protected function to()
-  {
-      return $this->recipients->implode(',');
-  }
+        return $this;
+    }
+
+    /**
+     * Push a new recipient to the collection
+     * @param  $mobile
+     * @return mixed
+     */
+    public function recipient($mobile)
+    {
+        $this->recipients = collect();
+        $this->recipients->push(urlencode($mobile));
+
+        return $this;
+    }
+
+    /**
+     * Send the SMS
+     */
+    public function send()
+    {
+        (new Client())->request(
+            'GET',
+            $this->apiUrl . env('CLICKATELL_API_KEY') . '&to=' . $this->to() . '&content=' . $this->content
+        );
+    }
+
+    /**
+     * Implode the recipient collection for the API URL
+     * @return string
+     */
+    protected function to()
+    {
+        return $this->recipients->implode(',');
+    }
 }
