@@ -1,6 +1,6 @@
 {
     "name": "billowapp/clickatell-sms",
-    "description": "laravel package for clickatell",
+    "description": "Laravel package for the Clickatell Platform",
     "license": "MIT",
     "authors": [
       {
@@ -9,6 +9,7 @@
       }
     ],
     "require": {
+      "laravel/framework": "~5.4",
       "guzzlehttp/guzzle": "^6.3"
     },
     "autoload": {

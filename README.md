@@ -1,6 +1,6 @@
-# clickatell-sms
+# Clickatell-SMS
 
-A simple Clickatell Laravel wrapper for Laravel 5.4+.
+A simple Clickatell Laravel wrapper for Laravel 5.4.
 
 ### Installation
 
@@ -8,19 +8,19 @@ A simple Clickatell Laravel wrapper for Laravel 5.4+.
 composer require billowapp/clickatell-sms
 ```
 
-### env
+### Env Configuration
 
 ```
 CLICKATELL_API_KEY=your_api_key
 ```
 
-### Facade Import
+### Real-time Facade Import
 
 ```php
 use Facades\Billow\Utilities\SMS;
 ```
 
-### Usage example
+### Usage
 
 ```php
 SMS::recipient('27112223333')->content('your text message content')->send();
